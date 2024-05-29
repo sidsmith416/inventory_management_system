@@ -55,13 +55,13 @@
                <div class="heading">
                     <h1>Inventory Manager</h1>
                </div>
-               <div class="add-item">
+               <!--<div class="add-item">
                     <form class="form">
                       <div class="mb-3">
                         <label class="form-label">
                           Part Number:
                           <input
-                            id="current_order_product_name"
+                            id="current_order_product_number"
                             class="form-control"
                             type="text"
                           />
@@ -69,7 +69,7 @@
                         <label class="form-label">
                           Part Category:
                           <input
-                            id="current_order_product_brand"
+                            id="current_order_product_category"
                             class="form-control"
                             type="text"
                           />
@@ -87,14 +87,14 @@
                         <label class="form-label">
                           Part Type:
                           <input
-                            id="current_order_product_price"
+                            id="current_order_product_type"
                             class="form-control"
                             type="number"
                           />
                         </label>
                       </div>
                       <div class="mb-3">
-                        <!--<button
+                        <button
                           class="btn btn-success"
                           onclick="addCurrentInventory()"
                           type="button"
@@ -108,24 +108,70 @@
                         <div class="form-popup" id="myForm">
                          <form action="" class="form-container">
                               <h1>Add Item</h1>
+                              
+                              <label for="part-number">Part Number:</label>
+                              <input type="text" placeholder="Part Number" id="current_order_product_number"  required>
+                              
+                              <label for="part-category">Part Category:</label>
+                              <select name="category" id="current_order_product_category" required>
+                                <option value="" selected="selected">Pick Category</option>
+                              </select>
 
-                              <label for="part-name">Part Name:</label>
-                              <input type="text" placeholder="Part Name" required>
+                              <!--<label for="part-category">Part Category:</label>
+                              <input type="text" placeholder="Part Category" id="current_order_product_category" required>-->
                               
-                              <label for="part-name">Part Number:</label>
-                              <input type="text" placeholder="Part Number" required>
+                              <label for="part-type">Part Type:</label>
+                              <input type="text" placeholder="Part Type" id="current_order_product_type" required>
                               
-                              <label for="part-name">Part Category:</label>
-                              <input type="text" placeholder="Part Category" required>
+                              <label for="length">Length:</label>
+                              <input type="number" placeholder="Length"id="current_order_product_length" required>
                               
-                              <label for="part-name">Part Type:</label>
-                              <input type="text" placeholder="Part Type" required>
+                              <label for="width">Width:</label>
+                              <input type="number" placeholder="Width" id="current_order_product_width" required>
+                              
+                              <label for="width">Height:</label>
+                              <input type="number" placeholder="Height"id="current_order_product_height" required>
+                              
+                              <label for="width">Quantity:</label>
+                              <input type="number" placeholder="Quantity" id="current_order_product_quantity" required>
 
-                              <button type="button" class="btn submit" onclick="addCurrentInventory()">Submit</button>
-                              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                              <button type="button" class="btn-submit" onclick="addCurrentInventory()">Submit</button>
+                              <button type="button" class="btn-cancel" onclick="closeForm()">Close</button>
                          </form>
                         </div>
-                        <button class="btn btn-danger" type="reset">Reset</button>
+                        <button class="remove-button"
+                         onclick="openRemoveForm()">
+                         Remove
+                        </button>
+                        <div class="form-popup" id="myFormTwo">
+                         <form action="" class="form-container">
+                              <h1>Remove Item</h1>
+                              
+                              <label for="part-number">Part Number:</label>
+                              <input type="text" placeholder="Part Number" required>
+                              
+                              <label for="part-category">Part Category:</label>
+                              <input type="text" placeholder="Part Category" required>
+                              
+                              <label for="part-type">Part Type:</label>
+                              <input type="text" placeholder="Part Type" required>
+                              
+                              <label for="length">Length:</label>
+                              <input type="number" placeholder="Length" required>
+                              
+                              <label for="width">Width:</label>
+                              <input type="number" placeholder="Width" required>
+                              
+                              <label for="width">Height:</label>
+                              <input type="number" placeholder="Height" required>
+                              
+                              <label for="width">Quantity:</label>
+                              <input type="number" placeholder="Quantity" required>
+
+                              <button type="button" class="btn-submit" onclick="removeCurrentInventory()">Submit</button>
+                              <button type="button" class="btn-cancel" onclick="closeRemoveForm()">Close</button>
+                         </form>
+                        </div>
                       </div>
                     </form>
                   </div>
@@ -140,53 +186,63 @@
                               <th scope="col">Grade</th>
                               <th scope="col">Length</th>
                               <th scope="col">Width</th>
+                              <th scope="col">Height</th>
                               <th scope="col">In Stock</th>
+                              <th scope="col">Location</th>
                          </tr>
                     </thead>
                     <tbody id="current_inventory_list">
                          <tr>
                               <th scope="row">1</th>
-                              <td>Acer Nitro 7</td>
+                              <td>PIP-SCH10-2.50</td>
                               <td>Metals</td>
-                              <td>sch80</td>
-                              <td>L1D3</td>
-                              <td>Carbon Steel</td>
-                              <td>4</td>
-                              <td>4</td>
-                              <td>4</td>
+                              <td>SCH80</td>
+                              <td>Stainless Steel</td>
+                              <td>316 SS</td>
+                              <td>48</td>
+                              <td>96</td>
+                              <td>1.25</td>
+                              <td>5</td>
+                              <td>5-1-B-9</td>
                          </tr>
                          <tr>
                               <th scope="row">2</th>
-                              <td>Acer Nitro 7</td>
+                              <td>PIP-SCH10-2.50</td>
                               <td>Metals</td>
-                              <td>sch40</td>
-                              <td>L1D3</td>
-                              <td>Carbon Steel</td>
+                              <td>SCH80</td>
+                              <td>Stainless Steel</td>
+                              <td>316 SS</td>
+                              <td>48</td>
+                              <td>96</td>
+                              <td>1.25</td>
                               <td>5</td>
-                              <td>5</td>
-                              <td>5</td>
+                              <td>5-1-B-9</td>
                          </tr>
                          <tr>
                               <th scope="row">3</th>
-                              <td>Acer Nitro 7</td>
+                              <td>PIP-SCH10-2.50</td>
                               <td>Metals</td>
-                              <td>sch80</td>
-                              <td>L1D3</td>
-                              <td>Carbon Steel</td>
+                              <td>SCH80</td>
+                              <td>Stainless Steel</td>
+                              <td>316 SS</td>
+                              <td>48</td>
+                              <td>96</td>
+                              <td>1.25</td>
                               <td>5</td>
-                              <td>5</td>
-                              <td>5</td>
+                              <td>5-1-B-9</td>
                          </tr>
                          <tr>
                               <th scope="row">4</th>
-                              <td>Acer Nitro 7</td>
+                              <td>PIP-SCH10-2.50</td>
                               <td>Metals</td>
-                              <td>sch40</td>
-                              <td>L1D3</td>
-                              <td>Carbon Steel</td>
+                              <td>SCH80</td>
+                              <td>Stainless Steel</td>
+                              <td>316 SS</td>
+                              <td>48</td>
+                              <td>96</td>
+                              <td>1.25</td>
                               <td>5</td>
-                              <td>5</td>
-                              <td>5</td>
+                              <td>5-1-B-9</td>
                          </tr>
                     </tbody>
                   </table>
